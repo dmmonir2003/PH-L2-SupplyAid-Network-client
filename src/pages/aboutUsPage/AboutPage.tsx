@@ -1,8 +1,5 @@
 
 
-
-
-
 const AboutPage = () => {
     return (
 

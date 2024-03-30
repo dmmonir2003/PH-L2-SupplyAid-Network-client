@@ -1,28 +1,36 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import Swal from 'sweetalert2';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-
-import logo from '../../assets/Untitled_design-removebg-preview-2.png'
 import { useAppSelector } from "@/redux/hooks";
 import { Link, useNavigate } from "react-router-dom";
-
 import { useForm } from "react-hook-form";
 import { useRegisterUserMutation } from "@/redux/features/auth/authApi";
 
 
+interface FormData {
+    name: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
 
-
+interface MyError {
+    data?: {
+        message?: string;
+    };
+}
 
 
 const Register = () => {
-    const { darkMode } = useAppSelector((store) => store.theme);
+    const { darkMode } = useAppSelector((store: { theme: any; }) => store.theme);
     const navigate = useNavigate();
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm<FormData>();
     const [registerUser] = useRegisterUserMutation();
 
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: FormData) => {
 
         const { password, confirmPassword, ...userData } = data;
 
@@ -33,7 +41,7 @@ const Register = () => {
                 title: 'Not Registration',
                 text: 'Password and confirm password do not match.'
             });
-            // Display alert or error message
+
             console.error("Password and confirm password do not match.");
             return;
         }
@@ -57,18 +65,22 @@ const Register = () => {
                     text: result.message
                 });
             }
-            // Handle successful registration(redirect user, show success message, etc.)
+
             navigate('/login')
             console.log("Registration successful:", result);
-        } catch (error) {
+        } catch (error: unknown) {
+            if (typeof error === 'object' && error !== null) {
+                const myError = error as MyError;
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Registration failed',
+                    text: myError?.data?.message || 'Unknown error occurred',
+                });
+                console.error("Registration failed:", myError);
+            } else {
 
-            Swal.fire({
-                icon: 'error',
-                title: 'Registration failed',
-                text: error.data.message,
-            });
-            // Handle registration error (show error message, etc.)
-            console.error("Registration failed:", error);
+                console.error("Registration failed with non-object error:", error);
+            }
         }
     };
 
@@ -89,7 +101,7 @@ const Register = () => {
                                 <h5 className="text-orange-500 ">Make a Donation</h5>
                             </div>
                             <div className="">
-                                <img className="w-3/12 mt-5" src={logo} alt="" />
+                                <img className="w-3/12 mt-5" src='https://i.postimg.cc/sM2w7MxH/Untitled-design-removebg-preview-2.png' alt="" />
 
                                 <h2 className='text-xl text-yellow-600 font-extrabold '>SupplyAid Network</h2>
                                 <p className='text-orange-500 font-bold'>Bringing Hope, One Meal at a Time.</p>

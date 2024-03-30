@@ -10,7 +10,7 @@ import { SiNginxproxymanager } from "react-icons/si";
 import { FiSettings } from "react-icons/fi";
 import { BiLogOutCircle } from "react-icons/bi";
 import { SiGoogletagmanager } from "react-icons/si";
-import logo from "../../assets/Untitled_design-removebg-preview-2.png"
+
 
 const DeshbordSideBar = () => {
 
@@ -41,7 +41,7 @@ const DeshbordSideBar = () => {
             <div className="">
                 <div className="flex justify-between py-4 items-center ">
                     <div className={`flex items-center ${!open && 'hidden'} grow-0`} >
-                        <img className="w-[40px]" src={logo} alt="" />
+                        <img className="w-[40px]" src='https://i.postimg.cc/sM2w7MxH/Untitled-design-removebg-preview-2.png' alt="" />
 
                         <h2 className=' ml-2 text-yellow-600 font-bold'>SupplyAid Network</h2>
 

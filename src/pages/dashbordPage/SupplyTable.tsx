@@ -8,15 +8,32 @@ import EditSupplyModel from './EditSupplyModel';
 import { useState } from 'react';
 import DeleteSupplyModel from './DeleteSupplyModel';
 
+
+interface Supply {
+    _id: string;
+    title: string;
+    image: string;
+    category: string;
+    quantity: string;
+    description: string;
+}
+
 const SupplyTable = () => {
 
     const { data: supplies, isLoading } = useGetAllSupplyQuery(undefined);
-    const [selectedSupply, setSelectedSupply] = useState(null);
+    const [selectedSupply, setSelectedSupply] = useState<Supply>({
+        _id: '',
+        title: '',
+        image: '',
+        category: '',
+        quantity: '',
+        description: ''
+    });
     const [isEditOpen, setIsEditOpen] = useState(false);
     const [modelOpen, setModelOpen] = useState(false);
-    const [id, setId] = useState('');
+    const [id, setId] = useState<string>('');
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-    const [idToDelete, setIdToDelete] = useState('');
+    const [idToDelete, setIdToDelete] = useState<string>('');
 
     if (isLoading) {
         return <div>Loading......</div>
@@ -26,19 +43,19 @@ const SupplyTable = () => {
 
 
 
-    const handleEdit = (supply, id) => {
-        // Open the edit model with the supply data
+    const handleEdit = (supply: Supply, id: string) => {
+
         setIsEditOpen(true);
         setModelOpen(true);
-        // Assuming you have a state variable for the edit model visibility
+
         setSelectedSupply(supply);
         setId(id);
-        // Assuming you have a state variable to store the selected supply
+
 
     };
 
 
-    const handleDelete = (id) => {
+    const handleDelete = (id: string) => {
         setIdToDelete(id);
         setDeleteModalOpen(true);
     };
@@ -82,7 +99,7 @@ const SupplyTable = () => {
 
 
                         {
-                            supplies?.map((supply, i) => <>
+                            supplies?.map((supply: Supply, i: number) => <>
 
                                 <TableRow key={i}>
                                     <TableCell className="font-medium"><img src={supply.image} alt="image not found" /></TableCell>

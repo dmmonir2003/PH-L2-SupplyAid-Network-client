@@ -1,9 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
 import Swal from 'sweetalert2';
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import logo from '../../assets/Untitled_design-removebg-preview-2.png'
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -11,9 +11,20 @@ import { useLoginUserMutation } from "@/redux/features/auth/authApi";
 import { verifyJwtToken } from "@/utils/tokenVarify";
 import { setUser } from "@/redux/features/auth/authSlice";
 
+interface FormData {
+    password: string;
+    email: string;
+
+}
+
+interface MyError {
+    data?: {
+        message?: string;
+    };
+}
 
 const LoginPage = () => {
-    const { darkMode } = useAppSelector((store) => store.theme)
+    const { darkMode } = useAppSelector((store: { theme: any; }) => store.theme)
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -21,16 +32,16 @@ const LoginPage = () => {
 
     const from = location.state?.from?.pathname || "/";
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm<FormData>();
     const [loginUser] = useLoginUserMutation();
     const dispatch = useAppDispatch();
 
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: FormData) => {
 
         try {
 
-            // console.log(data);
+
             const result = await loginUser(data).unwrap();
 
             if (result.success
@@ -48,18 +59,22 @@ const LoginPage = () => {
                 token: result.token
             }
             dispatch(setUser(payload))
-            // Handle successful registration(redirect user, show success message, etc.)
+
             navigate(from, { replace: true });
             console.log("Login successful:", result);
-        } catch (error) {
+        } catch (error: unknown) {
+            if (typeof error === 'object' && error !== null) {
+                const myError = error as MyError;
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login failed',
+                    text: myError?.data?.message || 'Unknown error occurred',
+                });
+                console.error("Login failed:", myError);
+            } else {
 
-            Swal.fire({
-                icon: 'error',
-                title: 'Login failed',
-                text: error.data.message,
-            });
-            // Handle registration error (show error message, etc.)
-            console.error("Login failed:", error);
+                console.error("Login failed with non-object error:", error);
+            }
         }
     };
 
@@ -81,7 +96,7 @@ const LoginPage = () => {
                                 <h5 className="text-orange-500 ">Make a Donation</h5>
                             </div>
                             <div className="">
-                                <img className="w-3/12 mt-5" src={logo} alt="" />
+                                <img className="w-3/12 mt-5" src='https://i.postimg.cc/sM2w7MxH/Untitled-design-removebg-preview-2.png' alt="" />
 
                                 <h2 className='text-xl text-yellow-600 font-extrabold '>SupplyAid Network</h2>
                                 <p className='text-orange-500 font-bold'>Bringing Hope, One Meal at a Time.</p>
@@ -103,7 +118,7 @@ const LoginPage = () => {
                             </div>
                             <div>
                                 <Label className="text-yellow-600">Password</Label>
-                                <Input required type="text" className="" {...register("password")}></Input>
+                                <Input required type="password" className="" {...register('password')}></Input>
                             </div>
 
                             <div className="mt-3">

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import logo from '../../assets/Untitled_design-removebg-preview-2.png'
+
 import { FaBars, FaEnvelope, FaMoon, FaPhoneAlt, FaSun, FaYoutube } from 'react-icons/fa';
 import { FaSquareFacebook } from 'react-icons/fa6';
 import { Button } from '@/components/ui/button';
@@ -115,12 +115,8 @@ const Navber = () => {
                             </Drawer>
                         </div>
 
-
-
-
-
                     </div>
-                    <img className='rounded-full p-3 w-[80px] md:w-[130px]' src={logo} alt="" />
+                    <img className='rounded-full p-3 w-[80px] md:w-[130px]' src='https://i.postimg.cc/sM2w7MxH/Untitled-design-removebg-preview-2.png' alt="" />
                     <div className='hidden md:block'>
                         <h2 className='text-3xl text-yellow-600 font-extrabold'>SupplyAid Network</h2>
                         <p className='text-orange-500 font-extrabold'>Bringing Hope, One Meal at a Time.</p>

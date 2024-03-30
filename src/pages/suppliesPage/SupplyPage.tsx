@@ -134,11 +134,11 @@ const SupplyPage = () => {
         <div className={`py-5 ${darkMode === false ? 'bg-gray-50' : 'bg-black opacity-80'} `}>
             <div className="md:flex gap-5 mx-10">
                 <div className="md:w-4/6 w-full mb-5 md:mb-0">
-                    <img className="rounded-md w-full h-[70vh]" src={supply.image} alt="" />
+                    <img className="rounded-md w-full h-[70vh]" src={supply?.image} alt="" />
                     <div className="mt-7 p-5 border border-yellow-600 rounded-md shadow shadow-yellow-600">
-                        <h2 className="text-xl mb-5 text-yellow-600 font-semibold">Quantity : {supply.quantity}</h2>
+                        <h2 className="text-xl mb-5 text-yellow-600 font-semibold">Quantity : {supply?.quantity}</h2>
                         <h2 className="text-xl text-yellow-600 font-semibold">Summary </h2>
-                        <article className="text-sm">{supply.description}</article>
+                        <article className="text-sm">{supply?.description}</article>
                     </div>
                 </div>
                 <div className=" md:w-2/6 w-full md:h-[100vh]">

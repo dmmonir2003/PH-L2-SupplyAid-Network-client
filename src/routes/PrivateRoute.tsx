@@ -1,16 +1,17 @@
 import { useAppSelector } from "@/redux/hooks";
+import { ReactNode } from "react";
 import { Navigate, useLocation } from "react-router-dom";
 
+interface PrivateRouteProps {
+    children: ReactNode;
+}
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute = ({ children }: PrivateRouteProps) => {
 
 
-    const { user, isLoading } = useAppSelector((store) => store.auth);
+    const { user } = useAppSelector((store) => store.auth);
     const location = useLocation();
 
-    if (isLoading) {
-        return <div>Loading ....</div>
-    }
 
     if (user) {
         return children;

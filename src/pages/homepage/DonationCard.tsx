@@ -9,20 +9,25 @@ import { useCreateDonationMutation } from "@/redux/features/donation/donationApi
 import Swal from "sweetalert2";
 
 
-
+interface FormData {
+    name: string;
+    email: string;
+    amount: number;
+    category: string;
+}
 
 
 const DonationCard = () => {
     const [position, setPosition] = useState("")
     const { darkMode } = useAppSelector((store) => store.theme)
-    const { handleSubmit, register } = useForm();
+    const { handleSubmit, register } = useForm<FormData>();
     const { user } = useAppSelector((state) => state.auth);
-    const [createDonation, { isLoading }] = useCreateDonationMutation();
+    const [createDonation] = useCreateDonationMutation();
 
 
 
     const navigate = useNavigate();
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: FormData) => {
 
 
 
@@ -86,7 +91,7 @@ const DonationCard = () => {
     };
 
 
-    const handlePositionChange = (newValue) => {
+    const handlePositionChange = (newValue: string) => {
         setPosition(newValue);
     };
 

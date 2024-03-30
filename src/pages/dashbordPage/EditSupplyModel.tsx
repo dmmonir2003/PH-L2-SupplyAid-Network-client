@@ -10,7 +10,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { useUpdateSupplyMutation } from '@/redux/features/supplies/SuppliesApi';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-import { ScrollArea } from '@/components/ui/scroll-area';
+
 import { useAppSelector } from '@/redux/hooks';
 
 interface Props {
@@ -37,12 +37,12 @@ interface FormData {
 const EditSupplyModel: React.FC<Props> = ({ supply, onClose, modelOpen, id }) => {
     const { register, handleSubmit, setValue } = useForm<FormData>();
     const [selectedCategory, setSelectedCategory] = useState('');
-    const [updateSupply, { isLoading, error }] = useUpdateSupplyMutation();
+    const [updateSupply] = useUpdateSupplyMutation();
     const { darkMode } = useAppSelector((store) => store.theme);
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Set default values for form fields when supply prop changes
+
         setValue('title', supply.title);
         setValue('image', supply.image);
         setValue('category', supply.category);

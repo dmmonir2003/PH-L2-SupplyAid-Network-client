@@ -29,7 +29,7 @@ interface CreateSupplyResult {
 const DeshbordAddSupply = () => {
 
     const { register, handleSubmit } = useForm<FormData>();
-    const [createSupply, { isLoading }] = useCreateSupplyMutation();
+    const [createSupply] = useCreateSupplyMutation();
 
     const navigate = useNavigate();
 
@@ -88,7 +88,7 @@ const DeshbordAddSupply = () => {
                     </div>
                     <div className="mt-2">
                         <Label className="text-yellow-600 font-medium my-2">Supply Category</Label>
-                        <Select className=' ' onValueChange={(value: string) => { setSelectedCategory(value) }} >
+                        <Select onValueChange={(value: string) => { setSelectedCategory(value) }} >
                             <SelectTrigger className="text-black font-medium">
                                 <SelectValue placeholder="Select a Supply Category" />
                             </SelectTrigger>

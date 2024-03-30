@@ -1,7 +1,7 @@
 import { Separator } from '@/components/ui/separator';
 import { useAppSelector } from '@/redux/hooks';
 import { Link, NavLink } from 'react-router-dom';
-import logo from '../../assets/Untitled_design-removebg-preview-2.png'
+
 import { FaEnvelope, FaSquareFacebook } from 'react-icons/fa6';
 import { FaPhoneAlt, FaYoutube } from 'react-icons/fa';
 
@@ -19,7 +19,7 @@ const Footer = () => {
                 <div className='md:flex justify-center md:justify-evenly items-start md:h-[50vh] h-full '>
                     <div className=' pl-16 md:w-1/3 w-full p-10'>
 
-                        <img className='rounded-full  w-[50px] ' src={logo} alt="" />
+                        <img className='rounded-full  w-[50px] ' src='https://i.postimg.cc/sM2w7MxH/Untitled-design-removebg-preview-2.png' alt="" />
                         <div className=''>
                             <h2 className='text-xl text-yellow-600 font-extrabold'>SupplyAid Network</h2>
                             <p className='text-orange-500 font-extrabold'>Bringing Hope, One Meal at a Time.</p>
