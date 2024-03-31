@@ -1,14 +1,35 @@
-const DonorAndMemberPage = () => {
-    return (
-        <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-            <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">
-                Exciting Updates Coming Soon!
-            </h2>
-            <p className="text-lg text-gray-600 text-center mb-8">
-                We're currently working hard to bring you the latest updates and information.
-                Stay tuned for exciting news about our donors and members.
-            </p>
+import { useAppSelector } from "@/redux/hooks";
+import { useLocation } from "react-router-dom";
+import TopDonarList from "./TopDonarList";
 
+
+const DonorAndMemberPage = () => {
+
+    const { category } = useAppSelector((store) => store.category);
+    const location = useLocation();
+
+
+
+
+
+    return (
+        <div>
+            {(location.pathname === '/common/donorAndLifetimeMember' && category === 'Top Donar data') && (
+                <div className=" ">
+                    <TopDonarList></TopDonarList>
+                </div>
+            )}
+
+            {(location.pathname === '/common/donorAndLifetimeMember' && category === 'Donar Testimonial') && (
+                <div className="">
+                    <h2>this is Donar Testimonial</h2>
+                </div>
+            )}
+            {(location.pathname === '/common/donorAndLifetimeMember' && category === 'Membership Policy') && (
+                <div className="">
+                    <h2>this is Membership</h2>
+                </div>
+            )}
         </div>
     );
 };

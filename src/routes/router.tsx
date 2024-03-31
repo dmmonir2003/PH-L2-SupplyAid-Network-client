@@ -13,7 +13,7 @@ import DonorAndMemberPage from "@/pages/donorAndLifetimeMemberPage/donorAndMembe
 import GalleryPage from "@/pages/galleryPage/GalleryPage";
 
 import Home from "@/pages/homepage/Home";
-import ProjectsPage from "@/pages/projectsPage/ProjectsPage";
+
 import VolunteerRegistrationPage from "@/pages/volunteerRegistrationPage/VolunteerRegistrationPage";
 import {
     createBrowserRouter,
@@ -23,6 +23,8 @@ import TarmsAndConditionPage from "@/pages/tarmsAndPrivacyPage/TarmsAndCondition
 import PrivacyPage from "@/pages/tarmsAndPrivacyPage/PrivacyPage";
 import SupplyPage from "@/pages/suppliesPage/SupplyPage";
 import PrivateRoute from "./PrivateRoute";
+import DeshbordVolunteerPage from "@/pages/dashbordPage/manageVoluteer/DeshbordVolunteerPage";
+import HeartfeltThanksPage from "@/pages/heartfeltThanksPage/HeartfeltThanksPage";
 
 
 
@@ -57,6 +59,10 @@ const router = createBrowserRouter([
                 path: 'volunteerRegistration',
                 element: <VolunteerRegistrationPage></VolunteerRegistrationPage>
             },
+            {
+                path: 'community',
+                element: <HeartfeltThanksPage></HeartfeltThanksPage>
+            },
 
         ]
     },
@@ -80,10 +86,7 @@ const router = createBrowserRouter([
                 path: 'donorAndLifetimeMember',
                 element: <DonorAndMemberPage></DonorAndMemberPage>
             },
-            {
-                path: 'projects',
-                element: <ProjectsPage></ProjectsPage>
-            },
+
 
         ]
     },
@@ -110,6 +113,10 @@ const router = createBrowserRouter([
             {
                 path: 'create-supply',
                 element: <DeshbordAddSupply></DeshbordAddSupply>
+            },
+            {
+                path: 'volunteer',
+                element: <DeshbordVolunteerPage></DeshbordVolunteerPage>
             },
         ]
     },

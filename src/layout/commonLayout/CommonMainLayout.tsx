@@ -5,7 +5,7 @@ import CommonNavber from "./CommonNavber";
 import CommonSideBar from "./CommonSideBar";
 import { useAppSelector } from "@/redux/hooks";
 
-import { supplyCategoris } from "@/assets/categoryData";
+import { aboutCategoris, donarAndLifeTimePageCategoris, supplyCategoris } from "@/assets/categoryData";
 
 
 
@@ -35,7 +35,7 @@ const CommonMainLayout = () => {
 
     }
     else if (location.pathname === '/common/about') {
-        categoryName = [];// about array
+        categoryName = aboutCategoris;// about array
         name = 'About Us'
         pathName = '/common/about';
     }
@@ -44,7 +44,7 @@ const CommonMainLayout = () => {
         name = 'Our Projects'
     }
     else if (location.pathname === '/common/donorAndLifetimeMember') {
-        categoryName = [];// Donor And Lifetime Member array 
+        categoryName = donarAndLifeTimePageCategoris;// Donor And Lifetime Member array 
         name = 'Donor And Lifetime Member'
     }
     else if (location.pathname === '/common/gallery') {
@@ -63,7 +63,7 @@ const CommonMainLayout = () => {
         <div className={` min-h-screen w-full max-w-7xl ${darkMode ? "bg-black text-white" : ""}`}>
             <Navber></Navber>
             <CommonNavber navName={name}></CommonNavber>
-            <div className={` flex ${darkMode ? "bg-black text-white" : "bg-gray-50"}`}>
+            <div className={`  flex ${darkMode ? "bg-black text-white" : "bg-gray-50"}`}>
 
                 <CommonSideBar pathName={pathName} categoryName={categoryName} >
                 </CommonSideBar>

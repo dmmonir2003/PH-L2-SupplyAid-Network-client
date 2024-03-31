@@ -96,9 +96,7 @@ const Navber = () => {
                                         <NavLink to='/common/allSupplies' className={activeNavLink === 'allSupplies' ? 'text-yellow-800 underline' : 'text-yellow-600 '} onClick={() => setActiveNavLink('allSupplies')}>
                                             <p>All Supplies</p>
                                         </NavLink>
-                                        <NavLink to='/common/projects' className={activeNavLink === 'projects' ? 'text-yellow-800 underline' : 'text-yellow-600 '} onClick={() => setActiveNavLink('projects')}>
-                                            <p>Projects</p>
-                                        </NavLink>
+
                                         <NavLink to='/common/donorAndLifetimeMember' className={activeNavLink === 'donorAndLifetimeMember' ? 'text-yellow-800 underline' : 'text-yellow-600 '} onClick={() => setActiveNavLink('donorAndLifetimeMember')}>
                                             <p>Donor And Lifetime Member</p>
                                         </NavLink>
@@ -108,6 +106,9 @@ const Navber = () => {
                                         </NavLink>
                                         <NavLink to='/terms-layout/volunteerRegistration' className={activeNavLink === 'volunteerRegistration' ? 'text-yellow-800 underline' : 'text-yellow-600 '} onClick={() => setActiveNavLink('volunteerRegistration')}>
                                             <p>Volunteer Registration</p>
+                                        </NavLink>
+                                        <NavLink to='/terms-layout/community' className={activeNavLink === 'heartfeltthanks' ? 'text-yellow-800 underline' : 'text-yellow-600 '} onClick={() => setActiveNavLink('heartfeltthanks')}>
+                                            <p>Heartfelt Thanks</p>
                                         </NavLink>
 
                                     </div>
@@ -163,9 +164,7 @@ const Navber = () => {
                     <NavLink to='/common/allSupplies' className={activeNavLink === 'allSupplies' ? 'text-orange-500 underline' : 'text-white'} onClick={() => setActiveNavLink('allSupplies')}>
                         <p>All Supplies</p>
                     </NavLink>
-                    <NavLink to='/common/projects' className={activeNavLink === 'projects' ? 'text-orange-500 underline' : 'text-white'} onClick={() => setActiveNavLink('projects')}>
-                        <p>Projects</p>
-                    </NavLink>
+
                     <NavLink to='/common/donorAndLifetimeMember' className={activeNavLink === 'donorAndLifetimeMember' ? 'text-orange-500 underline' : 'text-white'} onClick={() => setActiveNavLink('donorAndLifetimeMember')}>
                         <p>Donor And Lifetime Member</p>
                     </NavLink>
@@ -175,6 +174,10 @@ const Navber = () => {
                     </NavLink>
                     <NavLink to='/terms-layout/volunteerRegistration' className={activeNavLink === 'volunteerRegistration' ? 'text-orange-500 underline' : 'text-white'} onClick={() => setActiveNavLink('volunteerRegistration')}>
                         <p>Volunteer Registration</p>
+                    </NavLink>
+
+                    <NavLink to='/terms-layout/community' className={activeNavLink === 'heartfeltthanks' ? 'text-orange-500 underline' : 'text-white'} onClick={() => setActiveNavLink('heartfeltthanks')}>
+                        <p>Heartfelt Thanks</p>
                     </NavLink>
                 </div>
 

@@ -49,6 +49,8 @@ const TarmsLayout = () => {
         navName = 'Terms & Conditions';
     } else if (location.pathname === '/terms-layout/privacy-policy') {
         navName = 'Privacy Policy';
+    } else if (location.pathname === '/terms-layout/community') {
+        navName = 'Spread Kindness: Heartfelt Thanks Wall';
     } else if (location.pathname.startsWith('/terms-layout/supplies/') && !isLoading && supplies) {
         navName = getNavNameForSupply(location.pathname, supplies);
     } else if (location.pathname === '/terms-layout/volunteerRegistration') {

@@ -41,6 +41,14 @@ const donationApi = baseApi.injectEndpoints({
             }),
             providesTags: ['donation'],
         }),
+        getAllDonerData: builder.query({
+            query: () => ({
+                url: '/donations/all-donors',
+                method: 'GET',
+               
+            }),
+            providesTags: ['donation'],
+        }),
        
        
         
@@ -49,4 +57,4 @@ const donationApi = baseApi.injectEndpoints({
 
 
 
-export const {useCreateDonationMutation,useGetTotalDonationAmountQuery,useGetCategoryTotalDonationAmountQuery,useGetUserTotalDonationAmountQuery,useGetUserDonationDataWithAmountQuery}=donationApi;
+export const {useCreateDonationMutation,useGetTotalDonationAmountQuery,useGetCategoryTotalDonationAmountQuery,useGetUserTotalDonationAmountQuery,useGetUserDonationDataWithAmountQuery,useGetAllDonerDataQuery}=donationApi;

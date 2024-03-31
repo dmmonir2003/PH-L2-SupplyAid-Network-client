@@ -1,23 +1,35 @@
 
+import { useAppSelector } from "@/redux/hooks";
+import { useLocation } from "react-router-dom";
+import AboutUsIntrodection from "./AboutUsIntrodection";
+import AboutGoals from "./AboutGoals";
+import AboutVolunterTable from "./AboutVolunterTable";
 
 const AboutPage = () => {
+    const { category } = useAppSelector((store) => store.category);
+    const location = useLocation();
+
+
+
     return (
+        <div>
+            {(location.pathname === '/common/about' && category === 'Introduction') && (
+                <div className=" ">
+                    <AboutUsIntrodection></AboutUsIntrodection>
+                </div>
+            )}
 
-
-
-        <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-            <h2 className="text-3xl font-bold text-center text-gray-800 mb-4">
-                Exciting Updates Coming Soon!
-            </h2>
-            <p className="text-lg text-gray-600 text-center mb-8">
-                We're currently working hard to bring you the latest updates and information.
-                Stay tuned for exciting news about Us Page.
-            </p>
-
+            {(location.pathname === '/common/about' && category === 'Goals and Objectives') && (
+                <div className="">
+                    <AboutGoals></AboutGoals>
+                </div>
+            )}
+            {(location.pathname === '/common/about' && category === 'Our Volunteers') && (
+                <div className="">
+                    <AboutVolunterTable></AboutVolunterTable>
+                </div>
+            )}
         </div>
-
-
-
     );
 };
 

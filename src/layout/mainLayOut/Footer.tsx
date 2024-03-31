@@ -52,9 +52,7 @@ const Footer = () => {
                             <NavLink to='/common/allSupplies'>
                                 <p className='text-yellow-600 hover:text-yellow-800'>All Supplies</p>
                             </NavLink>
-                            <NavLink to='/common/projects' >
-                                <p className='text-yellow-600 hover:text-yellow-800'>Projects</p>
-                            </NavLink>
+
                             <NavLink to='/common/donorAndLifetimeMember' >
                                 <p className='text-yellow-600 hover:text-yellow-800'>Donor And Lifetime Member</p>
                             </NavLink>
@@ -64,6 +62,9 @@ const Footer = () => {
                             </NavLink>
                             <NavLink to='/terms-layout/volunteerRegistration' >
                                 <p className='text-yellow-600 hover:text-yellow-800'>Volunteer Registration</p>
+                            </NavLink>
+                            <NavLink to='/terms-layout/community' >
+                                <p className='text-yellow-600 hover:text-yellow-800'>Heartfelt Thanks</p>
                             </NavLink>
 
                         </div>
