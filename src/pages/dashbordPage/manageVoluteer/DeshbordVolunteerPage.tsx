@@ -7,6 +7,19 @@ import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
+interface TVolunteerData {
+    name: string;
+    email: string;
+    phoneNumber: string;
+    address: string;
+    facebookId?: string;
+    volunteerFor: string;
+    _id: string;
+    isApproved?: boolean;
+
+}
+
+
 const DeshbordVolunteerPage = () => {
 
     const { data: volunteersData, isLoading } = useGetAllVolunteerQuery(undefined);
@@ -46,9 +59,9 @@ const DeshbordVolunteerPage = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Volunteer Not add ',
-                text: error?.message,
+
             });
-            console.log(error?.message);
+
         }
 
     }
@@ -70,16 +83,16 @@ const DeshbordVolunteerPage = () => {
                 });
 
             }
-            console.log(result);
+
 
         } catch (error) {
             console.error("Error Volunteer application Not deleted :", error);
             Swal.fire({
                 icon: 'error',
                 title: 'Volunteer application Not deleted',
-                text: error?.message,
+
             });
-            console.log(error?.message);
+
         }
     }
 
@@ -100,8 +113,8 @@ const DeshbordVolunteerPage = () => {
 
 
 
-                        {volunteers?.map((volunteer, index) => (
-                            <TableRow key={index}>
+                        {volunteers?.map((volunteer: TVolunteerData) => (
+                            <TableRow key={volunteer._id}>
                                 <TableCell className="font-medium">{volunteer?.name}</TableCell>
                                 <TableCell className='text-yellow-600'>{volunteer?.email}</TableCell>
                                 <TableCell className='text-yellow-600'>{volunteer?.isApproved ? "Yes" : "No"}</TableCell>

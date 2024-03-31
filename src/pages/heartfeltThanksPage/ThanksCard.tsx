@@ -1,7 +1,17 @@
 import { useState } from 'react';
 import ReactCardFlip from 'react-card-flip';
 
-const ThanksCard = ({ image, ProjectName, date, name, gratefulFor, address, message }) => {
+interface TThanksProps {
+    image: string;
+    ProjectName: string;
+    date: string;
+    name: string;
+    gratefulFor: string;
+    address: string;
+    message: string;
+}
+
+const ThanksCard = ({ image, ProjectName, date, name, gratefulFor, address, message }: TThanksProps) => {
     const [isFlipped, setIsFlipped] = useState(false);
 
     const handleMouseEnter = () => {
@@ -10,6 +20,15 @@ const ThanksCard = ({ image, ProjectName, date, name, gratefulFor, address, mess
 
     const handleMouseLeave = () => {
         setIsFlipped(false);
+    };
+
+
+    const truncateMessage = (message: string): string => {
+        const words = message?.split(' ');
+        if (words?.length > 20) {
+            return words?.slice(0, 50).join(' ') + '...';
+        }
+        return message;
     };
 
     return (
@@ -24,16 +43,16 @@ const ThanksCard = ({ image, ProjectName, date, name, gratefulFor, address, mess
                         <h2 className='text-xl font-bold text-white'> {ProjectName}</h2>
 
                     </div>
-                    <div className='absolute  bottom-0  right-1/2 transform '>
+                    <div className='absolute  bottom-0   transform p-3'>
 
-                        <h3 className='text-white'>{name}</h3>
-                        <h3 className='text-white'>{address}</h3>
-                        <p className='text-white'>{date}</p>
+                        <h3 className='text-white ml-14'>{name}</h3>
+                        <h3 className='text-white ml-14'>{address}</h3>
+                        <p className='text-white ml-14'>{date}</p>
                     </div>
                 </div>
                 <div className={`bg-yellow-600 w-full h-72`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <div className=' p-7 '>
-                        <h2 className='text-white  text-center '>{message}</h2>
+                    <div className='p-7'>
+                        <h2 className='text-white  text-center '>{truncateMessage(message)}</h2>
                     </div>
                 </div>
             </ReactCardFlip>

@@ -1,6 +1,20 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useGetAllApprovedVolunteerQuery } from "@/redux/features/voluteer/volunteerApi";
 
+interface TVolunteerData {
+    name: string;
+    email: string;
+    phoneNumber: string;
+    address: string;
+    facebookId?: string;
+    volunteerFor: string;
+    _id: string;
+}
+
+
+
+
+
 const AboutVolunteerTable = () => {
     const { data: volunteersData, isLoading } = useGetAllApprovedVolunteerQuery(undefined);
 
@@ -25,8 +39,8 @@ const AboutVolunteerTable = () => {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {volunteers?.map((volunteer, index) => (
-                            <TableRow key={index}>
+                        {volunteers?.map((volunteer: TVolunteerData) => (
+                            <TableRow key={volunteer._id}>
                                 <TableCell className="font-medium text-yellow-600">{volunteer?.name}</TableCell>
                                 <TableCell className="text-yellow-600">{volunteer?.email}</TableCell>
                                 <TableCell className="text-yellow-600">{volunteer?.phoneNumber}</TableCell>

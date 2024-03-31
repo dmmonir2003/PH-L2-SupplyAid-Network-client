@@ -8,15 +8,26 @@ import { useForm } from "react-hook-form";
 import { FaAsterisk } from "react-icons/fa";
 import Swal from "sweetalert2";
 
+interface FormData {
+    name: string;
+    email: string;
+    phoneNumber: string;
+    address: string;
+    facebookId?: string; // Optional field
+    volunteerFor: string;
+}
+
+
+
 const VolunteerRegistrationPage = () => {
 
 
     const { darkMode } = useAppSelector((store) => store.theme)
     const [createVoluteerAplication] = useCreateVolunteerAplicationMutation()
 
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit } = useForm<FormData>();
 
-    const onSubmit = async (data) => {
+    const onSubmit = async (data: FormData) => {
         try {
 
             const result = await createVoluteerAplication(data).unwrap();
@@ -38,9 +49,8 @@ const VolunteerRegistrationPage = () => {
             Swal.fire({
                 icon: 'error',
                 title: 'Application Not Submited',
-                text: error?.data
-                    ?.message,
-            });
+
+            })
         }
 
     };

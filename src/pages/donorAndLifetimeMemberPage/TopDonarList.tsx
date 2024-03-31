@@ -2,6 +2,13 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { useGetAllDonerDataQuery } from "@/redux/features/donation/donationApi";
 
 
+interface Tdonar {
+    name: string;
+    email: string;
+    totalAmount: number;
+    _id: string;
+}
+
 const TopDonarList = () => {
 
     const { data: topdonarsData, isLoading } = useGetAllDonerDataQuery(undefined);
@@ -28,8 +35,8 @@ const TopDonarList = () => {
                         </TableRow>
                     </TableHeader>
                     <TableBody>
-                        {donars?.map((donar, index) => (
-                            <TableRow key={index}>
+                        {donars?.map((donar: Tdonar) => (
+                            <TableRow key={donar._id}>
                                 <TableCell className="font-medium text-yellow-600">{donar?.name}</TableCell>
                                 <TableCell className="text-yellow-600 text-center">{donar?.email}</TableCell>
                                 <TableCell className="text-yellow-600">{donar?.totalAmount}</TableCell>
