@@ -1,6 +1,8 @@
 import { useAppSelector } from "@/redux/hooks";
 import { useLocation } from "react-router-dom";
 import TopDonarList from "./TopDonarList";
+import DonarTestimonial from "./DonarTestimonial";
+import Membership from "./Membership";
 
 
 const DonorAndMemberPage = () => {
@@ -22,12 +24,12 @@ const DonorAndMemberPage = () => {
 
             {(location.pathname === '/common/donorAndLifetimeMember' && category === 'Donar Testimonial') && (
                 <div className="">
-                    <h2>this is Donar Testimonial</h2>
+                    <DonarTestimonial></DonarTestimonial>
                 </div>
             )}
             {(location.pathname === '/common/donorAndLifetimeMember' && category === 'Membership Policy') && (
                 <div className="">
-                    <h2>this is Membership</h2>
+                    <Membership></Membership>
                 </div>
             )}
         </div>

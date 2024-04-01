@@ -5,9 +5,24 @@ import { Separator } from "@/components/ui/separator";
 import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import TestimonialCard from "./TestimonialCard";
 import { NavLink } from "react-router-dom";
+import { useGetAlltestimonialQuery } from "@/redux/features/testimonial/testimonialApi";
 
 
 const Testimonial = () => {
+
+
+    const { data: donarTestimonialsData, isLoading } = useGetAlltestimonialQuery(undefined);
+
+    if (isLoading) {
+        return <div>Loading .....</div>
+    }
+
+
+
+    const donars = donarTestimonialsData?.slice(0, 6);
+
+
+
     return (
         <div className="py-20">
             <div className="flex justify-between mx-20">
@@ -28,7 +43,7 @@ const Testimonial = () => {
             <Separator className="w-1/3 h-1 mt-2 mb-10 ml-20"></Separator>
 
             <div className="mt-40">
-                <TestimonialCard></TestimonialCard>
+                <TestimonialCard donors={donars}></TestimonialCard>
             </div>
         </div>
     );

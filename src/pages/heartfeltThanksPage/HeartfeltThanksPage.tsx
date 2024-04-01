@@ -8,6 +8,8 @@ import { useForm } from "react-hook-form";
 import { useCreateGratitudeMutation, useGetAllGratitudeQuery } from "@/redux/features/gratitude/gratitudeApi";
 import Swal from "sweetalert2";
 import { Key } from "react";
+import { useAppSelector } from "@/redux/hooks";
+
 
 
 interface TFormData {
@@ -18,9 +20,15 @@ interface TFormData {
     message: string;
 }
 
+
+
 const imageToken = process.env.IMAGE_UPLOAD_TOKEN;
 const HeartfeltThanksPage = () => {
-    const { register, handleSubmit } = useForm<TFormData>();
+
+    const { user } = useAppSelector((store) => store.auth) || { user: null };
+
+
+    const { register, handleSubmit, reset } = useForm<TFormData>();
     const [createGratitude] = useCreateGratitudeMutation();
 
     const { data: GratitudeData, isLoading } = useGetAllGratitudeQuery(undefined);
@@ -28,6 +36,7 @@ const HeartfeltThanksPage = () => {
     const image_hosting_url = `https://api.imgbb.com/1/upload?key=${imageToken}`
 
     const onSubmit = async (data: TFormData) => {
+
         const formData = new FormData();
         formData.append('image', data.image[0]);
 
@@ -56,6 +65,8 @@ const HeartfeltThanksPage = () => {
                         title: 'Gratitude Added Successfully',
                         text: result.message,
                     });
+
+                    reset();
                 } else {
                     Swal.fire({
                         icon: 'error',
@@ -87,9 +98,9 @@ const HeartfeltThanksPage = () => {
 
             <div>
 
-                <div className="w-full flex px-10 space-y-6  gap-10 py-20">
+                <div className="w-full md:flex px-10 space-y-6  gap-10 py-20">
 
-                    <div className="w-2/3 ">
+                    <div className="w-full md:w-2/3 ">
                         <h2 className="text-xl text-yellow-600 font-bold">Building Bonds of Gratitude: Introducing Our Community Gratitude Wall</h2>
 
                         <p className="mt-3">In times of adversity, finding solace in the support of our community can be a beacon of hope. As-Sunnah Foundation is proud to introduce our latest initiative: the Community Gratitude Wall. This digital space is dedicated to fostering a culture of appreciation and unity, where individuals can express their heartfelt thanks for the kindness and assistance they've received during challenging moments.</p>
@@ -100,7 +111,7 @@ const HeartfeltThanksPage = () => {
                         <p className="mt-3">At As-Sunnah Foundation, we believe in the transformative power of gratitude. Join us on our journey to create a world where kindness is celebrated, support is abundant, and gratitude knows no bounds. Visit our Community Gratitude Wall today and let your words of appreciation inspire others.</p>
                     </div>
 
-                    <div className="space-y-4 w-1/3">
+                    <div className="space-y-4 w-full md:w-1/3">
                         <div className="border-t border-yellow-600" />
                         <div className="space-y-2">
                             <h2 className="text-2xl font-bold text-yellow-600">Share Your Gratitude</h2>
@@ -113,7 +124,7 @@ const HeartfeltThanksPage = () => {
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                         <Label htmlFor="name" className="text-yellow-600">Name</Label>
-                                        <Input id="name" placeholder="Enter your name" {...register('name')} required />
+                                        <Input id="name" placeholder="Enter your name" {...register('name')} className="text-black" required />
                                     </div>
                                     <div className="space-y-2">
                                         <Label htmlFor="Project Name" className="text-yellow-600">Project Name</Label>
@@ -132,7 +143,12 @@ const HeartfeltThanksPage = () => {
                                     <Label htmlFor="message" className="text-yellow-600">Your Message</Label>
                                     <Textarea className="text-black" id="message" placeholder="Type your message here." {...register('message')} required />
                                 </div>
-                                <Button type="submit" className="w-full my-3 bg-yellow-600 hover:bg-yellow-800">Post Message</Button>
+                                {
+                                    !user ? (
+                                        <p className="text-yellow-600 mt-2 text-sm font-medium">To leave a Gratitude, you must login first</p>
+                                    ) : null
+                                }
+                                <Button type="submit" className="w-full my-3 bg-yellow-600 hover:bg-yellow-800" disabled={!user}>Post Message</Button>
                             </form>
                         </div>
                     </div>
@@ -141,11 +157,7 @@ const HeartfeltThanksPage = () => {
 
 
 
-            <div className='w-full grid grid-cols-4 gap-5 px-10'>
-                <ThanksCard image={'https://www.finnpartners.com/wp-content/uploads/2022/12/holiday-24-800x800.jpg'} date={''} name={''} ProjectName={''} gratefulFor={''} address={''} message={'create a world where kindness is celebrated, support is abundant, and gratitude knows no bounds. Visit our Community Gratitude Wall today and let your words of appreciation inspire others.'}></ThanksCard>
-                <ThanksCard image={'https://www.finnpartners.com/wp-content/uploads/2022/12/holiday-24-800x800.jpg'} date={''} name={''} ProjectName={''} gratefulFor={''} address={''} message={'create a world where kindness is celebrated, support is abundant, and gratitude knows no bounds. Visit our Community Gratitude Wall today and let your words of appreciation inspire others.'}></ThanksCard>
-                <ThanksCard image={'https://www.finnpartners.com/wp-content/uploads/2022/12/holiday-24-800x800.jpg'} date={''} name={''} ProjectName={''} gratefulFor={''} address={''} message={'create a world where kindness is celebrated, support is abundant, and gratitude knows no bounds. Visit our Community Gratitude Wall today and let your words of appreciation inspire others.'}></ThanksCard>
-                <ThanksCard image={'https://www.finnpartners.com/wp-content/uploads/2022/12/holiday-24-800x800.jpg'} date={''} name={''} ProjectName={''} gratefulFor={''} address={''} message={'create a world where kindness is celebrated, support is abundant, and gratitude knows no bounds. Visit our Community Gratitude Wall today and let your words of appreciation inspire others.'}></ThanksCard>
+            <div className='w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 px-10'>
 
                 {
                     allGratitudes?.map((gratitude: { _id: Key | null | undefined | string; projectName: string; name: string; message: string; userGratitudeTime: string; location: string; image: string; }) => (

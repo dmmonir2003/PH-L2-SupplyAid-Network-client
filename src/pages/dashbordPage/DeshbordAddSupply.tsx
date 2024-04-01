@@ -84,7 +84,7 @@ const DeshbordAddSupply = () => {
 
                     <div className="mt-2">
                         <Label className="text-yellow-600 font-medium my-2 ">Supply Image URL</Label>
-                        <Input className=" font-medium " type="url" required {...register("image", { required: true })}></Input>
+                        <Input className="text-black font-medium " type="url" required {...register("image", { required: true })}></Input>
                     </div>
                     <div className="mt-2">
                         <Label className="text-yellow-600 font-medium my-2">Supply Category</Label>

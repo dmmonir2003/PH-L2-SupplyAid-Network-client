@@ -25,6 +25,7 @@ import SupplyPage from "@/pages/suppliesPage/SupplyPage";
 import PrivateRoute from "./PrivateRoute";
 import DeshbordVolunteerPage from "@/pages/dashbordPage/manageVoluteer/DeshbordVolunteerPage";
 import HeartfeltThanksPage from "@/pages/heartfeltThanksPage/HeartfeltThanksPage";
+import CreateTestimonial from "@/pages/dashbordPage/donarTestimonialManage/CreateTestimonial";
 
 
 
@@ -117,6 +118,10 @@ const router = createBrowserRouter([
             {
                 path: 'volunteer',
                 element: <DeshbordVolunteerPage></DeshbordVolunteerPage>
+            },
+            {
+                path: 'create-testimonial',
+                element: <CreateTestimonial></CreateTestimonial>
             },
         ]
     },

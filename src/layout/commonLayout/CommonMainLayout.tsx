@@ -5,7 +5,7 @@ import CommonNavber from "./CommonNavber";
 import CommonSideBar from "./CommonSideBar";
 import { useAppSelector } from "@/redux/hooks";
 
-import { aboutCategoris, donarAndLifeTimePageCategoris, supplyCategoris } from "@/assets/categoryData";
+import { aboutCategoris, donarAndLifeTimePageCategoris, galleryPageCategoris, supplyCategoris } from "@/assets/categoryData";
 
 
 
@@ -39,22 +39,22 @@ const CommonMainLayout = () => {
         name = 'About Us'
         pathName = '/common/about';
     }
-    else if (location.pathname === '/common/projects') {
-        categoryName = [];// projects array 
-        name = 'Our Projects'
-    }
+
     else if (location.pathname === '/common/donorAndLifetimeMember') {
         categoryName = donarAndLifeTimePageCategoris;// Donor And Lifetime Member array 
         name = 'Donor And Lifetime Member'
+        pathName = '/common/donorAndLifetimeMember';
+
     }
     else if (location.pathname === '/common/gallery') {
-        categoryName = [];// gallery array 
+        categoryName = galleryPageCategoris;// gallery array 
         name = 'Gallery'
+        pathName = '/common/gallery';
     }
-    else if (location.pathname === '/common/volunteerRegistration') {
-        categoryName = [];//Volunteer Registration
-        name = 'Volunteer Registration'
-    }
+    // else if (location.pathname === '/common/volunteerRegistration') {
+    //     categoryName = [];//Volunteer Registration
+    //     name = 'Volunteer Registration'
+    // }
 
 
 
@@ -67,7 +67,7 @@ const CommonMainLayout = () => {
 
                 <CommonSideBar pathName={pathName} categoryName={categoryName} >
                 </CommonSideBar>
-                <div className={` m-5  rounded-md w-full ${darkMode ? "bg-black border-2 border-yellow-600" : "bg-white"}`}><Outlet></Outlet></div>
+                <div className={` m-5 md:w-9/12 rounded-md w-4/6 ${darkMode ? "bg-black border-2 border-yellow-600" : "bg-white"}`}><Outlet></Outlet></div>
             </div>
 
             <Footer></Footer>

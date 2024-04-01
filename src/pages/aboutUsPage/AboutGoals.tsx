@@ -6,7 +6,7 @@ const AboutGoals = () => {
     return (
         <div className="p-10">
             <h2 className='text-xl text-yellow-600 font-extrabold '>Goals and Objectives</h2>
-            <p className="mt-3">The goal of the As-Sunnah Foundation is to gain the satisfaction of the Almighty Allah by conducting da'wah activities to prevent evil deeds in the light of the lifestyle of the Prophet (peace be upon him)</p>
+            <p className="mt-3">The goal of the SupplyAid Network is to gain the satisfaction of the Almighty Allah by conducting da'wah activities to prevent evil deeds in the light of the lifestyle of the Prophet (peace be upon him)</p>
 
             <div className="flex mt-4">
                 <div>
@@ -28,7 +28,7 @@ const AboutGoals = () => {
                 <div>
 
                 </div>
-                <p className="ml-3 -mt-5">(c) encouragement for good deeds are the prime objective of the As-sunnah Foundation.</p>
+                <p className="ml-3 -mt-5">(c) encouragement for good deeds are the prime objective of the SupplyAid Network.</p>
             </div>
 
 

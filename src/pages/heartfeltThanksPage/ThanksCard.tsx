@@ -35,19 +35,19 @@ const ThanksCard = ({ image, ProjectName, date, name, gratefulFor, address, mess
         <div className='relative '>
 
             <ReactCardFlip isFlipped={isFlipped} flipSpeedBackToFront={0.8} flipSpeedFrontToBack={0.8}>
-                <div className={`bg-red-500 w-full h-72 bg-cover shadow-lg shadow-yellow-600`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ backgroundImage: `url(${image})` }}>
+                <div className={`w-full h-72 bg-cover shadow-lg shadow-yellow-600 bg-opacity-60`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} style={{ backgroundImage: `url(${image})` }}>
                     <div className='absolute -left-1/4  top-1/2 transform '>
-                        <h2 className='text-3xl h-full text-white  transform -rotate-90 uppercase'>{gratefulFor}</h2>
+                        <h2 className='text-3xl h-full   transform -rotate-90 uppercase text-yellow-600'>{gratefulFor}</h2>
                     </div>
                     <div className='absolute  bottom-1/3  right-1/3 transform '>
-                        <h2 className='text-xl font-bold text-white'> {ProjectName}</h2>
+                        <h2 className='text-xl font-bold text-yellow-600'> {ProjectName}</h2>
 
                     </div>
                     <div className='absolute  bottom-0   transform p-3'>
 
-                        <h3 className='text-white ml-14'>{name}</h3>
-                        <h3 className='text-white ml-14'>{address}</h3>
-                        <p className='text-white ml-14'>{date}</p>
+                        <h3 className='text-yellow-600 ml-14'>{name}</h3>
+                        <h3 className='text-yellow-600 ml-14'>{address}</h3>
+                        <p className='text-yellow-600 ml-14'>{date}</p>
                     </div>
                 </div>
                 <div className={`bg-yellow-600 w-full h-72`} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
