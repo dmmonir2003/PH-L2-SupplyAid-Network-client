@@ -6,31 +6,26 @@ import Chart from "react-google-charts";
 
 const PiChart = () => {
 
-    const user = useAppSelector((store) => store.auth.user)
-
+    const user = useAppSelector((store) => store.auth.user);
     const userId = user?.userId;
 
-    console.log(userId);
+    const { data: userTotalDonation, isLoading: userAllDonationLoading } = useGetUserTotalDonationAmountQuery(userId);
+    const { data: userCategoryAmountData, isLoading } = useGetUserDonationDataWithAmountQuery(userId);
 
-    const { data: userTotalDonation, isLoading: userAllDonationLoading } = useGetUserTotalDonationAmountQuery(userId)
-
-    const { data: userCategoryAmountData, isLoading } = useGetUserDonationDataWithAmountQuery(userId)
-
-    if (isLoading) {
-        return <div>Loanding....</div>
+    if (isLoading || userAllDonationLoading) {
+        return <div>Loading....</div>;
     }
 
-
-    if (userAllDonationLoading && isLoading) {
-        return <div>Loanding....</div>
+    let categoryData = [];
+    if (userCategoryAmountData?.donations) {
+        categoryData = userCategoryAmountData.donations.map(({ category, totalAmount }: { category: string, totalAmount: number }) => [category, totalAmount]);
     }
-    const categoryData = userCategoryAmountData?.donations?.map(({ category, totalAmount }: { category: string, totalAmount: number }) => [category, totalAmount]);
 
+    const totalUserDonation = userTotalDonation?.totalUserDonation || 0;
 
     const data = [
-
         ["Task", "My Donation Data"],
-        ['Total Donation Amount ', userTotalDonation?.totalUserDonation || 0],
+        ['Total Donation Amount ', totalUserDonation],
         ...categoryData,
     ];
 

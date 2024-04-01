@@ -30,6 +30,7 @@ const BarChart = () => {
     ];
 
 
+
     const options = {
         chart: {
             title: "Total Donation Amount by Category",
