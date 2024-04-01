@@ -18,7 +18,7 @@ const TopDonarList = () => {
         return <div>Loading .....</div>
     }
 
-    const donars = topdonarsData?.donors; g
+    const donars = topdonarsData?.donors;
 
 
     return (
